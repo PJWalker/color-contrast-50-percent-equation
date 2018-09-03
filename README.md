@@ -1,1 +1,1 @@
-# color-contrast-50
+# Color Contrast - 50% Equation
