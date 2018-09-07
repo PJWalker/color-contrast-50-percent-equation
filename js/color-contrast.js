@@ -23,14 +23,16 @@
 
   var getContrastWCAG = (hex) => {
     const rgb = toRGB(hex);
+          console.log(hex);
     rgb.map(linearise);
     const luma = rgb[0]*0.2126 + rgb[1]*0.7152 + rgb[2]*0.0722;
-    return (luma > 0.5)? "black":"white";
+
+    return (luma > 127)? "black":"white";
     
   }
 
   var updateScreen = function updateScreen(hex) {
-    var contrastColor = getContrastWCAG(hex.substr(1));
+    var contrastColor = getContrastWCAG(hex);
     body.style.backgroundColor = hex;
     colorCode.style.color = contrastColor;
     colorCode.style.borderColor = contrastColor;
