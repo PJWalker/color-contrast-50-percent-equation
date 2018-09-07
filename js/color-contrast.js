@@ -5,9 +5,28 @@
   var body = document.querySelector('body');
 
   colorCode.value = colorPicker.value.substr(1);
+  
+  const toRGB = hex =>   
+    const r = parseInt(hex.substr(1, 2), 16),
+          g = parseInt(hex.substr(3, 2), 16),
+          b = parseInt(hex.substr(5, 2), 16),
+    return [r,g,b];
+  }
+ 
+ const linearise = (value) => {
+  const v = (value/255);
+  if(v<=0.03928) {
+  return v/12.92;
+  }
+  return Math.pow((v+0.055)/1.055,2.4)
+}
 
-  var getContrast50 = function getContrast50(hex) {
-    return (parseInt(hex, 16) > 0xffffff/2) ? 'black': 'white';
+  var getContrastWCAG = (hex) => {
+    const rgb = toRGB(hex);
+    rgb.map(linearise);
+    const luma = rgb[0]*0.2126 + rgb[1]*0.7152 + rgb[2]*0.0722;
+    return (luma > 0.5)? "black":"white";
+    
   }
 
   var updateScreen = function updateScreen(hex) {
