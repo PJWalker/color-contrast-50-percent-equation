@@ -22,12 +22,12 @@
 }
 
   var getContrastWCAG = (hex) => {
-    const rgb = toRGB(hex);
-          console.log(hex);
-    rgb.map(linearise);
-    const luma = rgb[0]*0.2126 + rgb[1]*0.7152 + rgb[2]*0.0722;
-
-    return (luma > 127)? "black":"white";
+    const rgb = toRGB(hex).map(linearise);
+    const luma = (rgb[0]*0.2126 + rgb[1]*0.7152 + rgb[2]*0.0722);
+    const whiteContrast = 1.05/(luma+0.05);
+    const blackContrast = (luma+0.05)/0.05;
+    console.log(luma, whiteContrast, blackContrast)
+    return (whiteContrast > blackContrast)? "white":"black";
     
   }
 
