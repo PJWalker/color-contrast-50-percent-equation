@@ -30,7 +30,7 @@
   }
 
   var updateScreen = function updateScreen(hex) {
-    var contrastColor = getContrast50(hex.substr(1));
+    var contrastColor = getContrastWCAG(hex.substr(1));
     body.style.backgroundColor = hex;
     colorCode.style.color = contrastColor;
     colorCode.style.borderColor = contrastColor;
