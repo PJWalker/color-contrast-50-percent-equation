@@ -1,1 +1,1 @@
-# Color Contrast - 50% Equation
+# Color Contrast - WCAG algorithm
